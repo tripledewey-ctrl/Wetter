@@ -185,8 +185,12 @@ footer { max-width: 1000px; margin: 24px auto; padding: 0 16px; color: var(--mut
 .wind-arrow { font-size: 18px; line-height: 1; text-align: center; text-shadow: 0 0 2px #fff; }
 .spot-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 0 2px #000; }
 
-.dwd-chart { margin: 16px 0 0; }
-.dwd-chart img { max-width: 100%; height: auto; border-radius: 8px; display: block; }
+/* alle DWD-Karten in derselben Anzeigegröße */
+.chart-frame {
+  aspect-ratio: 4 / 3; width: 100%; background: #fff; border-radius: 8px;
+  border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.chart-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
 @media (max-width: 520px) {
   #isomap { height: 420px; }

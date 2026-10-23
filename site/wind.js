@@ -431,6 +431,46 @@ $('play').addEventListener('click', () => {
   }, 700);
 });
 
+// ---------- DWD-Bodendruckkarten ----------
+// Analyse plus Vorhersagen in 12-h-Schritten; nicht vorhandene Karten werden übersprungen.
+const DWD_CHARTS = 'https://www.dwd.de/DWD/wetter/wv_spez/hobbymet/wetterkarten/';
+const CHART_CANDIDATES = [{ label: 'Analyse', file: 'bwk_bodendruck_na_ana.png' }]
+  .concat(d3.range(12, 169, 12).map((h) => ({ label: `Vorhersage +${h} h`, file: `ico_tkboden_na_${String(h).padStart(3, '0')}.png` })));
+let charts = [];
+
+function probe(c) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img.naturalWidth > 1 ? c : null);
+    img.onerror = () => resolve(null);
+    // stündlich neu laden, damit keine veralteten Karten aus dem Cache kommen
+    img.src = c.url = `${DWD_CHARTS}${c.file}?t=${Math.floor(Date.now() / 36e5)}`;
+  });
+}
+
+function showChart() {
+  const c = charts[Number($('chart-slider').value)];
+  if (!c) return;
+  $('chart-img').src = c.url;
+  $('chart-label').textContent = c.label;
+}
+
+async function loadCharts() {
+  charts = (await Promise.all(CHART_CANDIDATES.map(probe))).filter(Boolean);
+  if (!charts.length) { $('dwd-charts').hidden = true; return; }
+  $('chart-slider').max = String(charts.length - 1);
+  showChart();
+}
+
+const stepChart = (d) => {
+  const s = $('chart-slider');
+  s.value = String(Math.min(Math.max(Number(s.value) + d, 0), charts.length - 1));
+  showChart();
+};
+$('chart-slider').addEventListener('input', showChart);
+$('chart-prev').addEventListener('click', () => stepChart(-1));
+$('chart-next').addEventListener('click', () => stepChart(1));
+
 $('unit').addEventListener('change', (e) => {
   unit = e.target.value;
   try { localStorage.setItem(UNIT_KEY, unit); } catch (_) { /* ignore */ }
@@ -441,6 +481,7 @@ $('unit').addEventListener('change', (e) => {
 loadSpots()
   .then(() => { renderOverview(); renderDetail(); })
   .catch((err) => { showError($('overview'), err); });
+loadCharts();
 loadGrid()
   .then(renderIsobars)
   .catch((err) => { showError($('time-label'), err); });
