@@ -11,6 +11,7 @@ const TZ = 'Europe/Berlin';
 const FAVORITES = [
   { name: 'Wiesbaden', lat: 50.0826, lon: 8.2400 },
   { name: 'Hamburg', lat: 53.5511, lon: 9.9937 },
+  { name: 'Rendsburg', lat: 54.3044, lon: 9.6631 },
 ];
 const DEFAULT_PLACE = FAVORITES[0];
 const STORAGE_KEY = 'wetter.place';

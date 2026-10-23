@@ -8,7 +8,7 @@ Statische Wetterseite für Deutschland auf Basis der **freien Open-Data-Angebote
 - **24-Stunden-** und **7-Tage-Vorhersage** (DWD MOSMIX)
 - **Amtliche Unwetterwarnungen** des DWD für den gewählten Ort
 - **Karte** mit live **Niederschlagsradar** und **Warnkarte** (Gemeindeebene) vom DWD GeoServer
-- Schnellwahl für **Wiesbaden** (Standard) und **Hamburg**
+- Schnellwahl für **Wiesbaden** (Standard), **Hamburg** und **Rendsburg**
 - Ortssuche, Standortbestimmung und Klick in die Karte; letzter Ort wird gemerkt
 - **Wind & Nordsee** (`wind.html`): Windübersicht über 10 Tage für die niederländische Küste
   (Vlissingen, Scheveningen, IJmuiden, Den Helder, Terschelling) und die deutsche Nordsee
