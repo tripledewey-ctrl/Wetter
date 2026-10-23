@@ -39,5 +39,10 @@ cd site && python3 -m http.server 8000
 
 ## Veröffentlichen
 
-- **GitHub Pages:** In *Settings → Pages* als Quelle **GitHub Actions** wählen. Der Workflow `.github/workflows/pages.yml` veröffentlicht den Ordner `site/` bei jedem Push.
+- **GitHub Pages:** Der Workflow `.github/workflows/pages.yml` veröffentlicht den Ordner `site/` bei jedem Push auf `main`
+  (oder manuell über *Actions → GitHub Pages → Run workflow*). Live unter https://tripledewey-ctrl.github.io/Wetter/.
+  Voraussetzungen:
+  - *Settings → Pages*: Quelle **GitHub Actions**
+  - *Settings → Environments → github-pages*: Branch `main` unter *Deployment branches and tags* erlaubt
+  - Änderungen auf einem Arbeitsbranch entwickeln und per Pull Request nach `main` mergen
 - **GitLab Pages:** `.gitlab-ci.yml` kopiert `site/` nach `public/` und veröffentlicht es auf dem Default-Branch.
