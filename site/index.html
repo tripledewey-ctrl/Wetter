@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deutschlandwetter</title>
+  <meta name="description" content="Aktuelles Wetter, 7-Tage-Vorhersage, Unwetterwarnungen und Niederschlagsradar für Deutschland – auf Basis der offenen Daten des Deutschen Wetterdienstes (DWD).">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Deutschlandwetter</h1>
+    <form id="search" class="search" autocomplete="off">
+      <input id="q" type="search" placeholder="Ort suchen, z. B. Aachen" aria-label="Ort suchen">
+      <button type="submit">Suchen</button>
+      <button type="button" id="locate" title="Meinen Standort verwenden" aria-label="Meinen Standort verwenden">⌖</button>
+      <ul id="suggestions" class="suggestions" hidden></ul>
+    </form>
+  </header>
+
+  <main>
+    <section id="alerts" class="alerts" hidden></section>
+
+    <section class="card current" aria-live="polite">
+      <div class="current-head">
+        <div>
+          <h2 id="place">–</h2>
+          <p id="station" class="muted"></p>
+        </div>
+        <div class="current-main">
+          <span id="cur-icon" class="icon-big"></span>
+          <span id="cur-temp" class="temp-big">–</span>
+        </div>
+      </div>
+      <dl id="cur-details" class="details"></dl>
+    </section>
+
+    <section class="card">
+      <h2>Nächste 24 Stunden</h2>
+      <div id="hourly" class="hourly"></div>
+    </section>
+
+    <section class="card">
+      <h2>7-Tage-Vorhersage</h2>
+      <div id="daily" class="daily"></div>
+    </section>
+
+    <section class="card">
+      <div class="map-head">
+        <h2>Karte</h2>
+        <div class="map-toggle" role="group" aria-label="Kartenebene">
+          <button type="button" data-layer="radar" class="active">Niederschlagsradar</button>
+          <button type="button" data-layer="warn">Warnungen</button>
+        </div>
+      </div>
+      <div id="map" class="map"></div>
+    </section>
+  </main>
+
+  <footer>
+    Datenbasis: <a href="https://www.dwd.de/opendata">Deutscher Wetterdienst (DWD Open Data)</a>,
+    abgerufen über <a href="https://brightsky.dev">Bright Sky</a> und den
+    <a href="https://maps.dwd.de">DWD GeoServer</a>.
+    Ortssuche: <a href="https://open-meteo.com">Open-Meteo</a>.
+    Kartengrundlage: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Für den Fall, dass das Repo (zusätzlich) auf GitLab liegt: GitLab Pages
+pages:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - rm -rf public && cp -r site public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
