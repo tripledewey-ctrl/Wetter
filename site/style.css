@@ -122,3 +122,73 @@ footer { max-width: 1000px; margin: 24px auto; padding: 0 16px; color: var(--mut
   .day .rain { grid-column: 1 / -1; }
   .map { height: 360px; }
 }
+
+/* ---------- Seitennavigation ---------- */
+.pages { max-width: 1000px; margin: 0 auto; padding: 12px 16px 0; display: flex; gap: 6px; }
+.pages a {
+  padding: 6px 14px; border-radius: 999px; text-decoration: none; color: var(--text);
+  border: 1px solid var(--border); background: var(--card); font-size: .9rem;
+}
+.pages a[aria-current=page] { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ---------- Wind & Nordsee ---------- */
+.unit { display: flex; align-items: center; gap: 8px; color: var(--muted); }
+.unit select {
+  padding: 7px 10px; font: inherit; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--card); color: var(--text);
+}
+.card h3 { font-size: 1rem; margin: 18px 0 8px; }
+.card > .muted:first-of-type { margin-top: -6px; margin-bottom: 10px; }
+
+.table-wrap { overflow-x: auto; }
+.wind-table, .daily-table { border-collapse: separate; border-spacing: 3px; font-size: .9rem; }
+.wind-table th, .daily-table th { font-weight: 600; text-align: center; padding: 4px 6px; white-space: nowrap; color: var(--muted); }
+.wind-table th.spot {
+  text-align: left; position: sticky; left: 0; background: var(--card); z-index: 1; color: var(--text); cursor: pointer;
+}
+.wind-table tr.group th { text-align: left; color: var(--accent); padding-top: 10px; }
+.wind-table tbody tr:not(.group) { cursor: pointer; }
+.wind-table tbody tr.selected th.spot { color: var(--accent); }
+.wind-table td {
+  min-width: 52px; text-align: center; border-radius: 6px; padding: 4px 2px; color: #102030; line-height: 1.15;
+}
+.arr { display: inline-block; }
+.wind-table td .arr { font-size: 1rem; }
+.wind-table td .v { font-weight: 700; }
+.wind-table td .g { display: block; font-size: .72rem; opacity: .75; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 10px; font-size: .72rem; }
+.legend span { padding: 2px 6px; border-radius: 4px; color: #102030; }
+
+.chart { position: relative; height: 300px; }
+.chart.small { height: 180px; }
+
+.daily-table td { text-align: center; padding: 6px 8px; background: var(--bg); border-radius: 6px; white-space: nowrap; }
+.daily-table td.l { text-align: left; font-weight: 600; }
+.daily-table .bft { display: inline-block; padding: 0 6px; border-radius: 4px; color: #102030; font-weight: 600; }
+
+.check { display: flex; gap: 6px; align-items: center; font-size: .9rem; }
+.timebar { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.timebar input { flex: 1; min-width: 0; }
+.timebar button {
+  padding: 6px 12px; font: inherit; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--card); color: var(--text); cursor: pointer;
+}
+.timebar strong { white-space: nowrap; font-size: .9rem; }
+#isomap { height: 520px; }
+
+.iso-label { font: 600 11px system-ui, sans-serif; color: #333; text-shadow: 0 0 3px #fff, 0 0 3px #fff; white-space: nowrap; }
+.hl-label { font: 800 22px system-ui, sans-serif; text-align: center; line-height: 1; text-shadow: 0 0 4px #fff, 0 0 4px #fff; }
+.hl-label small { display: block; font-size: 11px; font-weight: 600; }
+.hl-label.h { color: #1565c0; }
+.hl-label.t { color: #c62828; }
+.wind-arrow { font-size: 18px; line-height: 1; text-align: center; text-shadow: 0 0 2px #fff; }
+.spot-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 0 2px #000; }
+
+.dwd-chart { margin: 16px 0 0; }
+.dwd-chart img { max-width: 100%; height: auto; border-radius: 8px; display: block; }
+
+@media (max-width: 520px) {
+  #isomap { height: 420px; }
+  .chart { height: 260px; }
+}

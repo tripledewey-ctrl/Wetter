@@ -10,6 +10,11 @@ Statische Wetterseite für Deutschland auf Basis der **freien Open-Data-Angebote
 - **Karte** mit live **Niederschlagsradar** und **Warnkarte** (Gemeindeebene) vom DWD GeoServer
 - Schnellwahl für **Wiesbaden** (Standard) und **Hamburg**
 - Ortssuche, Standortbestimmung und Klick in die Karte; letzter Ort wird gemerkt
+- **Wind & Nordsee** (`wind.html`): Windübersicht über 10 Tage für die niederländische Küste
+  (Vlissingen, Scheveningen, IJmuiden, Den Helder, Terschelling) und die deutsche Nordsee
+  (Borkum, Norderney, Helgoland, Cuxhaven, St. Peter-Ording, Sylt) in Knoten/Beaufort/km/h/m/s,
+  stündliche Wind-, Böen- und Luftdruckkurve, Wellenhöhe, Tagesprognose sowie eine
+  **Isobarenkarte** (Bodendruck mit Hoch/Tief und Windpfeilen, Zeitregler über 7 Tage)
 - Automatische Aktualisierung (Daten alle 15 min, Radar alle 5 min), Dark Mode
 
 ## Datenquellen
@@ -19,6 +24,8 @@ Statische Wetterseite für Deutschland auf Basis der **freien Open-Data-Angebote
 | Messwerte, Vorhersage, Warnungen | [Bright Sky](https://brightsky.dev) – freie JSON-API für [DWD Open Data](https://www.dwd.de/opendata) |
 | Radar- & Warnkarte | [DWD GeoServer (WMS)](https://maps.dwd.de) |
 | Ortssuche | [Open-Meteo Geocoding](https://open-meteo.com) |
+| Wind, Isobaren, Mehrtagesprognose | [Open-Meteo](https://open-meteo.com) (DWD ICON, KNMI HARMONIE) |
+| Wellen | [Open-Meteo Marine](https://open-meteo.com/en/docs/marine-weather-api) |
 | Kartengrundlage | © OpenStreetMap |
 
 Die DWD-Daten stehen unter der [Nutzungsbedingung „Datenbasis: Deutscher Wetterdienst"](https://www.dwd.de/copyright) (CC BY 4.0).

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wind &amp; Nordsee</title>
+  <meta name="description" content="Windvorhersage für die niederländische Küste und die deutsche Nordsee, Mehrtagesprognose und Isobarenkarte zur Planung der Wetterlage.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="pages" aria-label="Seiten">
+    <a href="index.html">Wetter</a>
+    <a href="wind.html" aria-current="page">Wind &amp; Nordsee</a>
+  </nav>
+  <header class="top">
+    <h1>Wind &amp; Nordsee</h1>
+    <label class="unit">Einheit
+      <select id="unit">
+        <option value="kn">Knoten</option>
+        <option value="bft">Beaufort</option>
+        <option value="kmh">km/h</option>
+        <option value="ms">m/s</option>
+      </select>
+    </label>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Windübersicht – maximaler Mittelwind pro Tag</h2>
+      <p class="muted">Pfeil zeigt, wohin der Wind weht; kleine Zahl = maximale Böe. Zeile anklicken für Details.</p>
+      <div class="table-wrap">
+        <table id="overview" class="wind-table"></table>
+      </div>
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <section class="card" id="detail">
+      <h2 id="spot-name">–</h2>
+      <p id="spot-info" class="muted"></p>
+      <h3>Wind, Böen &amp; Luftdruck (stündlich)</h3>
+      <div class="chart"><canvas id="wind-chart"></canvas></div>
+      <div id="wave-box">
+        <h3>Wellen</h3>
+        <div class="chart small"><canvas id="wave-chart"></canvas></div>
+      </div>
+      <h3>Tagesprognose</h3>
+      <div class="table-wrap">
+        <table id="daily-table" class="daily-table"></table>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="map-head">
+        <h2>Isobarenkarte (Bodendruck)</h2>
+        <label class="check"><input type="checkbox" id="show-wind" checked> Windpfeile</label>
+      </div>
+      <div class="timebar">
+        <button type="button" id="play" aria-label="Abspielen">▶</button>
+        <input type="range" id="time" min="0" max="0" value="0" aria-label="Vorhersagezeit">
+        <strong id="time-label">–</strong>
+      </div>
+      <div id="isomap" class="map"></div>
+      <p class="muted">Isobaren im Abstand von 5 hPa aus dem DWD-Modell ICON. H = Hoch, T = Tief.</p>
+      <figure id="dwd-chart" class="dwd-chart">
+        <img src="https://www.dwd.de/DWD/wetter/wv_spez/hobbymet/wetterkarten/bwk_bodendruck_na_ana.png"
+             alt="DWD Bodendruckanalyse Nordatlantik/Europa" loading="lazy"
+             onerror="this.parentElement.hidden = true">
+        <figcaption class="muted">Amtliche Bodenanalyse des DWD (Quelle: dwd.de)</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <footer>
+    Vorhersagedaten: <a href="https://open-meteo.com">Open-Meteo</a> (CC BY 4.0) mit den Modellen
+    DWD ICON, KNMI HARMONIE u. a.; Wellen: Open-Meteo Marine.
+    Datenbasis: <a href="https://www.dwd.de/opendata">Deutscher Wetterdienst</a>, <a href="https://www.knmi.nl">KNMI</a>.
+    Kartengrundlage: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.
+    Keine Gewähr – für die Seefahrt gelten die amtlichen Seewetterberichte.
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script src="wind.js"></script>
+</body>
+</html>
