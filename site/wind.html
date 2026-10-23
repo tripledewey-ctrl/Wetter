@@ -50,9 +50,24 @@
       </div>
     </section>
 
+    <section class="card" id="dwd-charts">
+      <h2>DWD-Bodendruckkarten (Analyse &amp; Vorhersage)</h2>
+      <p class="muted">Amtliche Karten des DWD mit Isobaren, Fronten, Hoch- und Tiefdruckgebieten. Es werden nur die aktuell verfügbaren Karten angezeigt.</p>
+      <div class="timebar">
+        <button type="button" id="chart-prev" aria-label="Vorherige Karte">◀</button>
+        <input type="range" id="chart-slider" min="0" max="0" value="0" aria-label="Karte wählen">
+        <button type="button" id="chart-next" aria-label="Nächste Karte">▶</button>
+        <strong id="chart-label">lädt …</strong>
+      </div>
+      <div class="chart-frame">
+        <img id="chart-img" alt="DWD Bodendruckkarte">
+      </div>
+      <p class="muted">Quelle: <a href="https://www.dwd.de/DE/leistungen/hobbymet_wk_europa/hobbyeuropakarten.html">Deutscher Wetterdienst – Analyse- und Prognosekarten Europa</a></p>
+    </section>
+
     <section class="card">
       <div class="map-head">
-        <h2>Isobarenkarte (Bodendruck)</h2>
+        <h2>Isobarenkarte interaktiv (DWD ICON)</h2>
         <label class="check"><input type="checkbox" id="show-wind" checked> Windpfeile</label>
       </div>
       <div class="timebar">
@@ -62,12 +77,6 @@
       </div>
       <div id="isomap" class="map"></div>
       <p class="muted">Isobaren im Abstand von 5 hPa aus dem DWD-Modell ICON. H = Hoch, T = Tief.</p>
-      <figure id="dwd-chart" class="dwd-chart">
-        <img src="https://www.dwd.de/DWD/wetter/wv_spez/hobbymet/wetterkarten/bwk_bodendruck_na_ana.png"
-             alt="DWD Bodendruckanalyse Nordatlantik/Europa" loading="lazy"
-             onerror="this.parentElement.hidden = true">
-        <figcaption class="muted">Amtliche Bodenanalyse des DWD (Quelle: dwd.de)</figcaption>
-      </figure>
     </section>
   </main>
 
