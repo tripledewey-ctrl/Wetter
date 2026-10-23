@@ -8,7 +8,11 @@ const BRIGHTSKY = 'https://api.brightsky.dev';
 const GEOCODE = 'https://geocoding-api.open-meteo.com/v1/search';
 const DWD_WMS = 'https://maps.dwd.de/geoserver/dwd/wms';
 const TZ = 'Europe/Berlin';
-const DEFAULT_PLACE = { name: 'Berlin', lat: 52.52, lon: 13.405 };
+const FAVORITES = [
+  { name: 'Wiesbaden', lat: 50.0826, lon: 8.2400 },
+  { name: 'Hamburg', lat: 53.5511, lon: 9.9937 },
+];
+const DEFAULT_PLACE = FAVORITES[0];
 const STORAGE_KEY = 'wetter.place';
 
 const ICONS = {
@@ -108,7 +112,7 @@ async function renderForecast(place) {
     const t = new Date(h.timestamp).toLocaleTimeString('de-DE', { hour: '2-digit', timeZone: TZ });
     const p = h.precipitation_probability != null ? `${h.precipitation_probability} %`
       : h.precipitation ? `${round(h.precipitation, 1)} mm` : '';
-    return `<div class="hour"><div>${t} Uhr</div><span class="i">${icon(h.icon)}</span>
+    return `<div class="hour"><div>${t}</div><span class="i">${icon(h.icon)}</span>
       <strong>${round(h.temperature)}°</strong><div class="p">${p}</div></div>`;
   }).join('');
 
@@ -206,6 +210,7 @@ async function show(place, { moveMap = true } = {}) {
   currentPlace = place;
   savePlace(place);
   $('place').textContent = place.name;
+  document.querySelectorAll('#favorites button').forEach((b) => b.classList.toggle('active', b.textContent === place.name));
   document.title = `${place.name} – Deutschlandwetter`;
   if (marker) marker.remove();
   marker = L.marker([place.lat, place.lon]).addTo(map).bindTooltip(place.name);
@@ -222,6 +227,15 @@ async function show(place, { moveMap = true } = {}) {
       if (target) $(target).innerHTML = `<p class="error">Daten konnten nicht geladen werden (${escapeHTML(err.message)}).</p>`;
     }
   }));
+}
+
+// Schnellwahl
+for (const fav of FAVORITES) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.textContent = fav.name;
+  btn.addEventListener('click', () => show(fav));
+  $('favorites').appendChild(btn);
 }
 
 // Ortssuche

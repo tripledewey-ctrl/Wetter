@@ -35,9 +35,9 @@ a { color: var(--accent); }
   padding: 16px; max-width: 1000px; margin: 0 auto;
 }
 .top h1 { margin: 0; font-size: 1.5rem; }
-.search { position: relative; display: flex; gap: 6px; flex: 1 1 320px; max-width: 460px; }
+.search { position: relative; display: flex; gap: 6px; flex: 1 1 320px; min-width: 0; max-width: 460px; }
 .search input {
-  flex: 1; min-width: 0; padding: 9px 12px; font: inherit;
+  flex: 1; min-width: 0; width: 100%; padding: 9px 12px; font: inherit;
   border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text);
 }
 .search button, .map-toggle button {
@@ -45,6 +45,12 @@ a { color: var(--accent); }
   background: var(--card); color: var(--text); cursor: pointer;
 }
 .search button[type=submit] { background: var(--accent); color: #fff; border-color: var(--accent); }
+.favorites { display: flex; gap: 6px; flex-basis: 100%; }
+.favorites button {
+  padding: 6px 14px; font: inherit; font-size: .9rem; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--card); color: var(--text); cursor: pointer;
+}
+.favorites button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 .suggestions {
   position: absolute; top: 100%; left: 0; right: 0; z-index: 1000; margin: 4px 0 0; padding: 4px 0;
   list-style: none; background: var(--card); border: 1px solid var(--border); border-radius: 8px;
@@ -54,6 +60,7 @@ a { color: var(--accent); }
 .suggestions li:hover, .suggestions li:focus { background: var(--bg); outline: none; }
 
 main { max-width: 1000px; margin: 0 auto; padding: 0 16px; display: grid; gap: 16px; }
+main > * { min-width: 0; }
 .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
 .card h2 { margin: 0 0 12px; font-size: 1.15rem; }
 
